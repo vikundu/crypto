@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+// import NavBar from './components/NavBar';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+
 
 class SearchBar extends Component{
     
@@ -7,23 +13,28 @@ class SearchBar extends Component{
         this.handleChange = this.handleChange.bind(this);
     }
     
-    handleChange(){
-        this.props.onUserInput(
-            this.refs.searchTextInput.value
-        );
+    handleChange(event){
+    
+        this.props.onUserInput(event.target.value);
+        
     }
     
     render(){
         return(
-            <form>
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={this.props.searchText}
-                  ref="searchTextInput"
-                  onChange={this.handleChange}
+            
+        <AppBar position="static" color="default">
+            <Toolbar>
+              <Typography variant="title" color="inherit">
+              <form>
+                <TextField
+                    placeholder="Search..."
+                    value={this.props.searchText}
+                    onChange={this.handleChange}
                 />
             </form>
+              </Typography>
+            </Toolbar>
+      </AppBar>
         );
     }
 }
